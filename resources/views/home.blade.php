@@ -17,6 +17,7 @@
                     {{ __('DSE_13 CRM Para el control de ventas!') }}
                 </div>
             </div>
+            <button type="button" name="button" text="Logout"></button>
         </div>
     </div>
 </div>
