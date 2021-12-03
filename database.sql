@@ -9,8 +9,8 @@ CREATE TABLE USUARIO (
   rol             varchar (100),
   description     varchar (255),
   icono           varchar (255),
-  create_at       datatime DEFAULT NULL,
-  update_at       datatime DEFAULT NULL,
+  create_at       datetime DEFAULT NULL,
+  update_at       datetime DEFAULT NULL,
   remember_token  varchar (255)  
 CONSTRAINT pk_USUARIO PRIMARY KEY (id)  
 )ENGINE=InnoDb;
@@ -24,7 +24,7 @@ CREATE TABLE COMPRA (
   cantidad  int (255),
   precio    int (255),
   total     int (255),
-  fecha     datatime DEFAULT NULL,
+  fecha     datetime DEFAULT NULL,
   rfn_ima   int (255),
   rfn_usu   int (255),
 CONSTRAINT pk_COMPRA PRIMARY KEY (id),  
@@ -36,7 +36,7 @@ CREATE TABLE VENTA (
   id        int (255) auto_increment not null,
   numero    int (255) not null,
   serie     varchar (50) DEFAULT NULL,
-  fecha     datatime DEFAULT NULL,
+  fecha     datetime DEFAULT NULL,
   cantidad  int (255),
   rfn_art   int (255),
   precio    int (255),
@@ -50,8 +50,8 @@ CONSTRAINT fk_post_usuario FOREIGN KEY (rfn_usu) REFERENCES USUARIO(id)
 CREATE TABLE IMAGENES (
   id        int (255) auto_increment not null,
   rfn_usu   int (255),
-  fec_crea  datatime DEFAULT NULL,
-  fec_actu  datatime DEFAULT NULL,
+  fec_crea  datetime DEFAULT NULL,
+  fec_actu  datetime DEFAULT NULL,
   imagen    varchar (255),
 CONSTRAINT pk_IMAGENES PRIMARY KEY (id),
 CONSTRAINT fk_post_usuario FOREIGN KEY (rfn_usu) REFERENCES USUARIO(id)
@@ -68,7 +68,7 @@ CREATE TABLE ARTICULO (
   costo_ult_compr   int (255),
   costo_prom        int (255),
   rfn_usu           int (255),
-  fec_actu          datatime DEFAULT NULL
+  fec_actu          datetime DEFAULT NULL
 CONSTRAINT pk_ARTICULO PRIMARY KEY (id)
 CONSTRAINT fk_post_imagen FOREIGN (rfn_ima) REFERENCES IMAGENES(id),
 CONSTRAINT fk_post_usuario FOREIGN (rfn_usu) REFERENCES USUARIO(id)
@@ -79,7 +79,7 @@ CREATE TABLE HISTOART (
   rfn_art     int (255) not null,
   rfn_doc     int (255) not null,
   num_doc     int (255) not null,
-  fecha       datatime DEFAULT NULL,
+  fecha       datetime DEFAULT NULL,
   cantidad    int (255),
   precio      int (255),
   stock       int (255)
