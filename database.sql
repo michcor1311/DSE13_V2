@@ -11,14 +11,14 @@ CREATE TABLE USUARIO (
   icono           varchar (255),
   create_at       datetime DEFAULT NULL,
   update_at       datetime DEFAULT NULL,
-  remember_token  varchar (255)  
+  remember_token  varchar (255), 
 CONSTRAINT pk_USUARIO PRIMARY KEY (id)  
 )ENGINE=InnoDb;
 
 CREATE TABLE COMPRA (
   id        int (255) auto_increment not null,
   numero    int (255) not null,
-  serie     varchar 
+  serie     varchar (50),
   proveedor varchar (50) DEFAULT NULL,
   rfn_art   int (255),
   cantidad  int (255),
@@ -45,7 +45,7 @@ CREATE TABLE VENTA (
 CONSTRAINT pk_VENTA PRIMARY KEY (id),
 CONSTRAINT fk_post_articulo FOREIGN KEY (rfn_art) REFERENCES ARTICULO(id),
 CONSTRAINT fk_post_usuario FOREIGN KEY (rfn_usu) REFERENCES USUARIO(id)
-)ENGINE=InnoDb
+)ENGINE=InnoDb;
 
 CREATE TABLE IMAGENES (
   id        int (255) auto_increment not null,
@@ -55,7 +55,7 @@ CREATE TABLE IMAGENES (
   imagen    varchar (255),
 CONSTRAINT pk_IMAGENES PRIMARY KEY (id),
 CONSTRAINT fk_post_usuario FOREIGN KEY (rfn_usu) REFERENCES USUARIO(id)
-)ENGINE=InnoDb
+)ENGINE=InnoDb;
 
 CREATE TABLE ARTICULO (
   id                int (255) auto_increment not null,
@@ -68,11 +68,11 @@ CREATE TABLE ARTICULO (
   costo_ult_compr   int (255),
   costo_prom        int (255),
   rfn_usu           int (255),
-  fec_actu          datetime DEFAULT NULL
-CONSTRAINT pk_ARTICULO PRIMARY KEY (id)
+  fec_actu          datetime DEFAULT NULL,
+CONSTRAINT pk_ARTICULO PRIMARY KEY (id),
 CONSTRAINT fk_post_imagen FOREIGN (rfn_ima) REFERENCES IMAGENES(id),
 CONSTRAINT fk_post_usuario FOREIGN (rfn_usu) REFERENCES USUARIO(id)
-)ENGINE=InnoDb
+)ENGINE=InnoDb;
 
 CREATE TABLE HISTOART (
   id          int (255) auto_increment not null,
@@ -82,9 +82,9 @@ CREATE TABLE HISTOART (
   fecha       datetime DEFAULT NULL,
   cantidad    int (255),
   precio      int (255),
-  stock       int (255)
+  stock       int (255),
 CONSTRAINT pk_HISTOART PRIMARY KEY (id),
 CONSTRAINT fk_post_articulo FOREIGN KEY (rfn_art) REFERENCES ARTICULO(id),
 CONSTRAINT fk_post_articulo_doc_vent FOREIGN KEY (rfn_doc) REFERENCES VENTA(numero),
 CONSTRAINT fk_post_doc_comp FOREIGN KEY (rfn_doc) REFERENCES COMPRA(numero)
-)ENGINE=InnoDb
+)ENGINE=InnoDb;
