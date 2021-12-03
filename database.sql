@@ -70,8 +70,8 @@ CREATE TABLE ARTICULO (
   rfn_usu           int (255),
   fec_actu          datetime DEFAULT NULL,
 CONSTRAINT pk_ARTICULO PRIMARY KEY (id),
-CONSTRAINT fk_post_imagen FOREIGN (rfn_ima) REFERENCES IMAGENES(id),
-CONSTRAINT fk_post_usuario FOREIGN (rfn_usu) REFERENCES USUARIO(id)
+CONSTRAINT fk_post_imagen FOREIGN KEY (rfn_ima) REFERENCES IMAGENES(id),  
+CONSTRAINT fk_post_usuario FOREIGN KEY (rfn_usu) REFERENCES USUARIO(id)
 )ENGINE=InnoDb;
 
 CREATE TABLE HISTOART (
